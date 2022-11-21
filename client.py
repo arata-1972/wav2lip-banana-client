@@ -33,10 +33,14 @@ def main(args):
     model_key = secrets['MODEL_KEY']
     #===============================================
     # REQUEST
-    image  = skimage.io.imread(args.impath)
+    image  = skimage.io.imread(args.img_path)
     image = Image.fromarray(image)
     image_base64 = encodeBase64Image(image)
-    request_json = {'image':image_base64,'video':args.video}
+    audio_base64 = base64.b64encode(open(args.audio_path, "rb").read())
+
+    request_json = {
+        'image':image_base64,
+        'audio':audio_base64}
     model_inputs = request_json
     # model_inputs = {YOUR_MODEL_INPUT_JSON} # anything you want to send to your model
     #===============================================
