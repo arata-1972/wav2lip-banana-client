@@ -54,8 +54,9 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--impath',type=str,default='source.png',help='name of the image file')
-    parser.add_argument('--output-path',type=str,default='result.mp4',help='save the motion transfered video as')
-    parser.add_argument('--video',type=str,default='driving.mp4',help='name of the driving video (on the banana server)')
+    parser.add_argument("--audio_path",default=r"./demo/audio/intro.wav",help="audio file sampled as 16k hz")
+    parser.add_argument("--img_path",default=r"./demo/img/paint.jpg", help="reference image")
+    parser.add_argument("--save_path",default=r"./results", help="save path")
+    # parser.add_argument('--video',type=str,default='driving.mp4',help='name of the driving video (on the banana server)')
     args = parser.parse_args()
     main(args)
