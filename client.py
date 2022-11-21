@@ -36,6 +36,7 @@ def main(args):
     image  = skimage.io.imread(args.img_path)
     image = Image.fromarray(image)
     image_base64 = encodeBase64Image(image)
+    # https://stackoverflow.com/questions/30224729/convert-wav-to-base64
     audio_base64 = base64.b64encode(open(args.audio_path, "rb").read())
 
     request_json = {
@@ -47,6 +48,7 @@ def main(args):
     # RESPONSE
     with Timer('api call'):
         out = banana.run(api_key, model_key, model_inputs)
+    assert False,'from here'
     model_outputs = out['modelOutputs']
     assert isinstance(model_outputs,list),f'expecting response["modelOutputs"] to be a list, found {model_outputs.__class__}'
     assert len(model_outputs) == 1, f'length of response["modelOutputs"] be 1, found {len(response["modelOutputs"])}'
