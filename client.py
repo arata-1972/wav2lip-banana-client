@@ -48,21 +48,22 @@ def main(args):
     # RESPONSE
     with Timer('api call'):
         out = banana.run(api_key, model_key, model_inputs)
-    assert False,'from here'
+    # assert False,'from here'
+    # import pdb;pdb.set_trace()
     model_outputs = out['modelOutputs']
     assert isinstance(model_outputs,list),f'expecting response["modelOutputs"] to be a list, found {model_outputs.__class__}'
     assert len(model_outputs) == 1, f'length of response["modelOutputs"] be 1, found {len(response["modelOutputs"])}'
     model_outputs = model_outputs[0]
     print(f'status:{model_outputs["message"]}')
     video_base64 = model_outputs['result']
-    with open(args.output_path,'wb') as f:
+    with open(args.save_path,'wb') as f:
         f.write(base64.b64decode(video_base64))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--audio_path",default=r"./demo/audio/intro.wav",help="audio file sampled as 16k hz")
     parser.add_argument("--img_path",default=r"./demo/img/paint.jpg", help="reference image")
-    parser.add_argument("--save_path",default=r"./results", help="save path")
+    parser.add_argument("--save_path",default=r"./results.mp4", help="save path")
     # parser.add_argument('--video',type=str,default='driving.mp4',help='name of the driving video (on the banana server)')
     args = parser.parse_args()
     main(args)
