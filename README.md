@@ -1,4 +1,4 @@
-client for interacting with banana Thin Plate Spline API.
+client for interacting with banana Audio2Head API.
 1. run __setup.sh__ to install requirements and ignore __secrets.json__ from being committed with your keys
 2. add the API and MODEL keys to __secrets.json__ in valid JSON
 
